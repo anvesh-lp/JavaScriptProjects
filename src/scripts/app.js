@@ -4,7 +4,7 @@ const tasklist = document.querySelector('.collection');
 const filter = document.querySelector('#filter');
 const clearbutton = document.querySelector('.clear-tasks');
 
-
+//Loading event
 loadEventListeners();
 
 
