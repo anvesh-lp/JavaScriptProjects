@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+          integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
+    <link href="../stylesheets/index.css" rel="stylesheet">
+    <title>Book List</title>
+</head>
+<body>
+<div class="container">
+    <h1>Add Book</h1>
+    <form id="book-form">
+        <div>
+            <label for="title">Title</label>
+            <input class="u-full-width" id="title" placeholder="Title of Book" type="text">
+        </div>
+        <div>
+            <label for="author">Author</label>
+            <input class="u-full-width" id="author" placeholder="Author Name" type="text">
+        </div>
+        <div>
+            <label for="isbn">ISBN</label>
+            <input class="u-full-width" id="isbn" placeholder="Enter ISBN" type="text">
+        </div>
+        <div>
+            <input class="u-full-width" id="submit" type="submit" value="submit">
+        </div>
+    </form>
+    <hr>
+    <table class="u-full-width">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN</th>
+        </tr>
+        </thead>
+        <tbody id="book-list">
+
+        </tbody>
+    </table>
+</div>
+
+<script src="../scripts/AppES5.js"></script>
+
+</body>
+</html>

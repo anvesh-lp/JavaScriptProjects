@@ -31,7 +31,7 @@ maxNumber.textContent = max;
 
 submitButton.addEventListener('click', checkNumber);
 
-game.addEventListener('mousedown', function (x) {
+game.addEventListener('click', function (x) {
     if (x.target.className === 'play-again') {
         window.location.reload();
     }
