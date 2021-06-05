@@ -7,6 +7,42 @@ class Book {
 
 }
 
+class store {
+    static getBooks() {
+        let books = [];
+        if (localStorage.getItem('books') != null) {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
+    }
+
+    static addbBooks(book) {
+        const books = store.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static displayBooks() {
+        const books = store.getBooks();
+        let ui = new UI();
+        books.forEach(function (book) {
+            ui.addBookToUi(book);
+        });
+    }
+
+    static deleteBook(isbn, author) {
+        let books = store.getBooks();
+        books.forEach(function (book, index) {
+            if (book.isbn === isbn && book.author === author) {
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
+
+document.addEventListener("DOMContentLoaded", store.displayBooks);
+
 class UI {
     addBookToUi(book) {
         //    Get table list from ui
@@ -42,9 +78,11 @@ class UI {
 
     deleteRow(element, ui) {
         if (element.target.className === 'delete') {
+            const isbn = element.target.parentElement.previousElementSibling.textContent;
+            const author = element.target.parentElement.previousElementSibling.previousElementSibling.textContent;
             element.target.parentElement.parentElement.remove();
+            store.deleteBook(isbn, author);
             ui.showMessage("Book deleted", 'success');
-
         }
     }
 }
@@ -55,7 +93,6 @@ document.getElementById('book-list').addEventListener('click', function (event) 
     const ui = new UI(null);
     ui.deleteRow(event, ui);
     event.preventDefault();
-
 });
 
 const submitButton = document.getElementById('submit');
@@ -85,6 +122,7 @@ submitButton.addEventListener('click', function (event) {
     } else {
         //Add book to UI
         ui.addBookToUi(book);
+        store.addbBooks(book);
         ui.showMessage("Book added", 'success');
         ui.cleafields();
     }
